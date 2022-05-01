@@ -44,6 +44,7 @@ func rootHandler(w http.ResponseWriter, req *http.Request) {
 	c := exec.Command("mpv", params...)
 	c.Stdout = os.Stdout
 
+	defer c.Wait()
 	err := c.Start()
 
 	if err != nil {
